@@ -1,0 +1,103 @@
+
+    /*Array in Java
+    dataType[] arr; (or)
+    dataType []arr; (or)
+    dataType arr[];
+
+    */
+
+    /*
+    Selection Statements
+
+    if(//boolean)
+    {
+        //Do Something
+    }
+    else //-> (!boolean)
+    {
+        //Do Something
+    }
+
+    switch(expression){
+        case 1:
+        {
+            statement;
+        }
+
+        break;
+        case 2:
+        {
+            statement;
+        }
+        break;
+        case N:
+        {
+            statement;
+        }
+        break;
+        default:
+        {
+            statement;
+        }
+        break;
+    }
+     */
+
+
+    /*Loops in JAVA
+    For Loop
+    for(initialization condition; testing condition; increment/decrement)
+    {
+        //Do something
+    }
+    while(condition)
+    {
+        //Do something
+    }
+    for (T element:Collection obj/array)
+    {
+        //Do something
+    }
+     */
+
+    /*
+    Object Oriented Programming:
+    Abstraction – Need to know
+        • Abstract Data Types: Data structure that hides the implementation
+        details from users (accessed through interfaces)
+        • Users are aware of what can be done by the ADT but not how
+        • Implementation is done through classes
+    Encapsulation – Protection level
+        • Prevents details from being revealed to reduce dependence on specifics of
+        code which may change later (i.e. reusability)
+        • Increases adaptability and robustness
+        • Need to maintain public interface
+    Modularity – Separate components
+        • Division of software program into separate components
+        • Allows for efficient testing and debugging
+     */
+
+    /*
+    Divide & Conquer:
+        • Divide and conquer: Breakdown a large problem into simpler
+        sub-problems until these are simple enough to solve directly
+        • Sub-problems are smaller than the overall problem but of the
+        same kind
+        • Smaller problems can either be further divided into even smaller
+        problems or solved directly
+        • Solutions of sub-problems can be combined with one another to
+        obtain solution for the overall problem
+     */
+
+    /*
+    General recursion:
+        • Recursive call: Function calls itself inside itself
+        • Base case: Simplest sub-problem with a direct solution
+        • Recursive calls stop here!
+        • Infinite regress: Function keeps on calling itself (no stop point)
+        • Problem division doesn’t move closer to the base case at each recursive
+        step
+     */
+
+
+}
