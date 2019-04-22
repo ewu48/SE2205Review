@@ -141,7 +141,7 @@ public class LinkedList<E> {
         int counter = 1;
         while(!content.isEmpty())
         {
-            System.out.print("Node:" + (size - counter) + "   Value:");
+            System.out.print("AbstractBinaryTree:" + (size - counter) + "   Value:");
             System.out.print( content.pop());
             System.out.println();
             counter++;
