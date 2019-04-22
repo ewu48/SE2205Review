@@ -1,5 +1,6 @@
 package Tree;
 
+import LinkedList.LinkedList;
 import Queue.LinkedListQueue;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -75,6 +76,91 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
             return new Node<E>(e, p, l, r);
         }
     }
+    public E remove(Position<E> p)throws IllegalArgumentException
+    {
+        Node<E> node = root.validate(p);
+        if(numChildren(p) == 2) throw new IllegalArgumentException("p has two children");
+        Node<E> child = (node.getLeft() != null ? node.getLeft():node.getRight());
+        if(child != null)
+        {
+            child.setParent(node.getParent());
+        }
+        if(node == root)
+        {
+            root = child;
+        }
+        else
+        {
+            Node<E> parent = root.validate(node.getParent());
+            if(parent.getRight() != null)
+            {
+                parent.setLeft(child);
+            }
+            else
+            {
+                parent.setRight(child);
+            }
+        }
+        size--;
+        E temp = node.getElement();
+        node.setElement(null);
+        node.setLeft(null);
+        node.setRight(null);
+        node.setParent(null);
+        return temp;
+
+    }
+
+
+    public void attach(Position<E> p, AbstractBinaryTrees<E> t1, AbstractBinaryTrees<E> t2) throws IllegalArgumentException
+    {
+        Node<E> node = root.validate(p);
+        if(isInternal(p)) throw new IllegalArgumentException("p is not a leaf node");
+        size = size + t1.size() + t2.size();
+        if(!t1.isEmpty())
+        {
+            t1.root.setParent(node);
+            node.setLeft(t1.root);
+            t1.root = null;
+            t1.size = 0;
+        }
+        if(!t2.isEmpty())
+        {
+            t2.root.setParent(node);
+            node.setRight(t2.root);
+            t2.root = null;
+            t2.size = 0;
+        }
+    }
+
+
+    public E set(Position<E> p, E e) throws IllegalArgumentException
+    {
+        Node<E> node = root.validate(p);
+        E tempE = node.getElement();
+        node.setElement(e);
+        return tempE;
+    }
+
+    public int depth(Position<E> p) {
+        if (isRoot(p)) {
+            return 0;
+        } else {
+            return 1 + depth(parent(p));
+        }
+    }
+
+    public int height(Position<E> p) {
+        int height = 0;
+        if (isExternal(p)) {
+            return 0;
+        } else {
+            for (Position<E> c : children(p)) {
+                height = Math.max(height, height(c)) + 1;
+            }
+        }
+        return height;
+    }
 
     public Position<E> left(Position<E> p) throws IllegalArgumentException {
         Node<E> node = root.validate(p);
@@ -103,6 +189,16 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
         node.setLeft(leftChild);
         size++;
         return leftChild;
+    }
+
+    public Position<E> addRight(Position<E> p, E e) throws IllegalArgumentException
+    {
+        Node<E> node = root.validate(p);
+        if(node.getLeft()!=null) throw new IllegalArgumentException("p already has a right child");
+        Node<E> rightChild = new Node(e,node,null,null);
+        node.setLeft(rightChild);
+        size++;
+        return rightChild;
     }
 
 
