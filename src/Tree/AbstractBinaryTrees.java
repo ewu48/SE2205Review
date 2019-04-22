@@ -8,10 +8,10 @@ import java.util.List;
 
 public class AbstractBinaryTrees<E> implements TreeADT<E> {
 
-    protected Node<E> root;
-    public AbstractBinaryTrees(Node<E> root)
+    public Node<E> root;
+    public AbstractBinaryTrees()
     {
-        this.root = root;
+
     }
     private int size =0;
     protected static class Node<E> implements Position<E> {
@@ -72,9 +72,22 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
             }
             return node;
         }
-        protected Node<E> createNode(E e, Node<E> p, Node<E> l, Node<E> r) {
-            return new Node<E>(e, p, l, r);
+
+    }
+    public Node<E> createNode(E e, Node<E> p, Node<E> l, Node<E> r) {
+        return new Node<E>(e, p, l, r);
+    }
+
+    public void printTree()
+    {
+        int height = height(root);
+        for(int i = 1; i < height; i++)
+        {
+                        
         }
+
+
+
     }
     public E remove(Position<E> p)throws IllegalArgumentException
     {
@@ -194,9 +207,9 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
     public Position<E> addRight(Position<E> p, E e) throws IllegalArgumentException
     {
         Node<E> node = root.validate(p);
-        if(node.getLeft()!=null) throw new IllegalArgumentException("p already has a right child");
+        if(node.getRight()!=null) throw new IllegalArgumentException("p already has a right child");
         Node<E> rightChild = new Node(e,node,null,null);
-        node.setLeft(rightChild);
+        node.setRight(rightChild);
         size++;
         return rightChild;
     }
@@ -304,6 +317,7 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
          if(!isEmpty()){
              preOrderST(root(),snapshot);
          }
+
          return snapshot;
      }
      private void preOrderST(Position<E> p, List<Position<E>> snap)
@@ -327,7 +341,6 @@ public class AbstractBinaryTrees<E> implements TreeADT<E> {
     }
     private void postOrderST(Position<E> p, List<Position<E>> snap)
     {
-
         for(Position<E> c: children(p))
         {
             preOrderST(c,snap);
